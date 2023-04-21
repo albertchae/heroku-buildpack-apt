@@ -12,6 +12,8 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
+echo BUILD_DIR is $BUILD_DIR
+
 function error() {
   echo " !     $*" >&2
   exit 1
@@ -97,7 +99,7 @@ mkdir -p $BUILD_DIR/.apt
 
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
-  dpkg -x $DEB $BUILD_DIR/.apt/
+  dpkg -X $DEB $BUILD_DIR/.apt/
 done
 
 topic "Writing profile script"
